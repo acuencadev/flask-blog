@@ -17,5 +17,10 @@ def connect_db():
     return sqlite3.connect(app.config['DATABASE'])
 
 
+@app.route('/')
+def login():
+    return render_template("login.html")
+
+
 if __name__ == '__main__':
     app.run()
