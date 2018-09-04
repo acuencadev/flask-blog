@@ -23,7 +23,7 @@ def login():
 
 
 @app.route('/main')
-def login():
+def main():
     return render_template("index.html")
 
 
