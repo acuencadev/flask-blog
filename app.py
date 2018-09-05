@@ -7,6 +7,9 @@ import sqlite3
 
 # configuration
 DATABASE = "blog.db"
+SECRET_KEY = "hard_to_guess"
+USERNAME = "admin"
+PASSWORD = "admin"
 
 app = Flask(__name__)
 
