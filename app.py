@@ -1,5 +1,5 @@
 # app.py - controller
-from flask import Flask, render_template, request, sessions, flash, redirect, url_for, g
+from flask import Flask, render_template, request, session, flash, redirect, url_for, g
 
 # imports
 import sqlite3
@@ -30,11 +30,18 @@ def login():
             error = "Invalid credentials. Please try again."
             status_code = 401
         else:
-            sessions['logged_in'] = True
+            session['logged_in'] = True
             return redirect(url_for('main'))
 
     return render_template("login.html", error=error)
 
+
+@app.route('/logout')
+def logout():
+    session.pop('logged_in', None)
+    flash('You were logged out')
+
+    return redirect(url_for('login'))
 
 
 @app.route('/main')
