@@ -61,7 +61,14 @@ def logout():
 @app.route('/main')
 @login_required
 def main():
-    return render_template("index.html")
+    g.db = connect_db()
+    cursor = g.db.execute("SELECT * FROM posts")
+    posts = [dict(title=row[0], post=row[1]) for row in cursor.fetchall()]
+    g.db.close()
+
+    print(posts)
+
+    return render_template("index.html", posts=posts)
 
 
 if __name__ == '__main__':
